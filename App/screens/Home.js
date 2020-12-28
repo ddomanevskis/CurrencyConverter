@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { format } from 'date-fns';
+import { Entypo } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Colors from '../constants/colors';
-import { ConversionInput } from '../components/ConversionInput';
 import colors from '../constants/colors';
 import { Button } from '../components/Button';
 import { KeyboardSpacer } from '../components/KeyboardSpacer';
+import { ConversionInput } from '../components/ConversionInput';
 
 const screen = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.blue,
+        backgroundColor: colors.blue,
         flex: 1
     },
     content: {
-        paddingTop: screen.height * 0.2,
+        paddingTop: screen.height * 0.1,
     },
     logoContainer: {
         alignItems: 'center',
@@ -42,10 +43,14 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: 14,
         textAlign: 'center'
-    }
+    },
+    header: {
+        alignItems: 'flex-end',
+        marginHorizontal: 20,
+    },
 });
 
-export default () => {
+export default ({ navigation }) => {
     const baseCurrency = 'EUR';
     const quoteCurrency = 'USD';
     const conversionRate = 1.22;
@@ -56,7 +61,14 @@ export default () => {
     return (
         <View style={styles.container}>
             <ScrollView scrollEnabled={scrollEnabled}>
-                <StatusBar barStyle = 'light-content' backgroundColor = {Colors.blue}/>
+                <StatusBar barStyle = 'light-content' backgroundColor = {colors.blue}/>
+
+                <SafeAreaView style={styles.header}>
+                    <TouchableOpacity onPress={() => navigation.push('Options')}>
+                        <Entypo name='cog' size={32} color={colors.white} />
+                    </TouchableOpacity>
+                </SafeAreaView>
+
                 <View style={styles.content}>
                     <View style={styles.logoContainer}>
                         <Image source={require('../assets/images/background.png')} style={styles.logoBackground} resizeMode='contain'/>
