@@ -56,7 +56,7 @@ export default ({ navigation }) => {
     const conversionRate = 1.22;
     const date = new Date();
 
-    const [scrollEnabled, setScrollEnabled] = useState()
+    const [scrollEnabled, setScrollEnabled] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -76,19 +76,20 @@ export default ({ navigation }) => {
                     </View>
 
                     <Text style={styles.textHeader}>Currency Converter</Text>
-
-                    <ConversionInput 
-                    text = {baseCurrency}
-                    value = '123'
-                    onButtonPress = {() => alert('todo!')}
-                    onChangeText = {text => console.log('text', text)}
-                    keyboardType = 'numeric'/>
+                    <View style={styles.logoContainer}>
+                        <ConversionInput 
+                            text = {baseCurrency}
+                            value = '123'
+                            onButtonPress = {() => navigation.push('CurrencyList', { title: 'Base Currency', activeCurrency: baseCurrency})}
+                            onChangeText = {text => console.log('text', text)}
+                        keyboardType = 'numeric'/>
                     
-                    <ConversionInput
-                    text = {quoteCurrency}
-                    value = '123'
-                    onButtonPress = {() => alert('todo!')}
-                    editable = {false}/>
+                        <ConversionInput
+                            text = {quoteCurrency}
+                            value = '123'
+                            onButtonPress = {() => navigation.push('CurrencyList', { title: 'Quote Currency', activeCurrency: quoteCurrency})}
+                            editable = {false}/>
+                    </View>
 
                     <Text style={styles.text}>{`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${format(date, 'MMMM do yyyy')}.`}</Text>
 
