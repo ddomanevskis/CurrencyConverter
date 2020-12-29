@@ -18,7 +18,7 @@ const MainStackScreen = () => (
 );
 
 const ModalStack = createStackNavigator();
-const ModelStackScreen = () => (
+const ModalStackScreen = () => (
     <ModalStack.Navigator mode='modal'>
         <ModalStack.Screen 
             name='Main'
@@ -39,6 +39,6 @@ const ModelStackScreen = () => (
 
 export default () => (
     <NavigationContainer>
-        <MainStackScreen />
+        <ModalStackScreen />
     </NavigationContainer>
 );

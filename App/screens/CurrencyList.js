@@ -33,14 +33,17 @@ export default ({ navigation, route = {} }) => {
                     const selected = params.activeCurrency === item;
                     return (
                         <RowItem
-                            title={item} 
+                            text={item} 
                             onPress={() => {navigation.pop()}}
                             rightIcon={
                                 selected && (
                                     <View style={styles.icon}> 
                                         <Entypo name='check' size={20} color={colors.white} />
-                                    </View>)}
-                            />); }}
+                                    </View>)
+                            }
+                        />
+                    );
+                }}
                 keyExtractor={(item) => item}
                 ItemSeparatorComponent={() => <RowSeparator />}
                 ListFooterComponent={() => <View style={{ paddingBottom: insets.bottom }} /> }
